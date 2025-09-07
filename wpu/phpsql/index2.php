@@ -49,7 +49,7 @@ if( isset($_POST["cari"])){
             <td><?php echo $siswatampil["nis"] ?></td>
             <td><?php echo $siswatampil["jurusan"] ?></td>
             <td><?php echo $siswatampil["semester"] ?></td>
-            <td><img style="width: 50px;" src="<?php echo $siswatampil["gambar"] ?>" alt=""></td>
+            <td><img style="width: 80px;" src="img/<?php echo $siswatampil["gambar"] ?>" alt=""></td>
         </tr>
         <?php } ?>
     </table>

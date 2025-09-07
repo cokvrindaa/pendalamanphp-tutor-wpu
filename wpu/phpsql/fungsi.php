@@ -14,13 +14,13 @@ function tambah($data){
     $nama = htmlspecialchars($data["nama"]);
     $nis = htmlspecialchars($data["nis"]);
     $jurusan = htmlspecialchars($data["jurusan"]);
-    $semester = htmlspecialchars($data["jurusan"]);
+    $semester = htmlspecialchars($data["semester"]);
     // Upload gambar
     $gambar = upload();
     if (!$gambar){
         return false;
     }
-    $query = "INSERT INTO siswa VALUES (NULL, '$nama', '$nis', '$jurusan', '$semester', NULL) ";
+    $query = "INSERT INTO siswa VALUES (NULL, '$nama', '$nis', '$jurusan', '$semester', '$gambar') ";
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
 }
@@ -60,6 +60,9 @@ function upload(){
         ";
         return false;
     }
+    // gambar siap di up
+    move_uploaded_file($tmpName, '/img'. $namafile);
+    return $namafile;
 }
 
 function hapus($id){
