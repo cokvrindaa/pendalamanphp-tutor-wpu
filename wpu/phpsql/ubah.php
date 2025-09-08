@@ -3,7 +3,6 @@ require_once 'koneksi.php';
 require_once 'fungsi.php';
 $id = $_GET['id'];
 $datasiswa = query("SELECT * FROM siswa WHERE id = $id");
-var_dump($datasiswa);
 if(isset($_POST["submit"])){
     if(ubah($_POST)>0){
         echo"
@@ -35,9 +34,10 @@ if(isset($_POST["submit"])){
 <body>
 
     <h1>Ubah data siswa</h1>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <?php foreach ($datasiswa as $siswatampil){ ?>
         <input type="hidden" name="id" value="<?php echo $siswatampil["id"] ?>">
+        <input type="hidden" name="gambarLama" value="<?php echo $siswatampil["gambar"] ?>">
         <label for="nama">Nama:</label>
         <input type="text" id="nama" name="nama" required value="<?php echo $siswatampil["nama"]  ?>"><br><br>
 
@@ -50,7 +50,10 @@ if(isset($_POST["submit"])){
         <label for="semester">Semester:</label>
         <input type="text" id="semester" name="semester" required value="<?php echo $siswatampil["nama"]  ?>"> <br><br>
         <br>
-        <button type="submit" name="submit">Ubah data</button>
+        <img src="img/<?php echo $siswatampil["gambar"]; ?>" alt="" width="50px">
+        <br>
+        <input type="file" name="gambar" id="gambar">
+        <button type=" submit" name="submit">Ubah data</button>
         <?php } ?>
     </form>
     <a href=" index2.php">Balik</a>

@@ -60,9 +60,13 @@ function upload(){
         ";
         return false;
     }
+    // mencegah duplikasi
+    $namafileBaru = uniqid();
+    $namafileBaru .= '.';
+    $namafileBaru .= $ekstensiGambar;
     // gambar siap di up
-    move_uploaded_file($tmpName, '/img'. $namafile);
-    return $namafile;
+    move_uploaded_file($tmpName, 'img/'. $namafileBaru);
+    return $namafileBaru;
 }
 
 function hapus($id){
@@ -73,21 +77,33 @@ function hapus($id){
 }
 function ubah($data){
     global $koneksi;
+    $id = $data["id"];
     $nama = htmlspecialchars($data["nama"]);
     $nis = htmlspecialchars($data["nis"]);
     $jurusan = htmlspecialchars($data["jurusan"]);
-    $semester = htmlspecialchars($data["jurusan"]);
-    $id = $data["id"];
+    $semester = htmlspecialchars($data["semester"]);
+    $gambarLama = htmlspecialchars($data["gambarLama"]);
+
+    // cek apakah user upload gambar baru
+    if ($_FILES['gambar']['error'] === 4){
+        $gambar = $gambarLama;
+    } else {
+
+        $gambar = upload();
+    }
+
     $query = "UPDATE siswa SET
-    nama = '$nama',
-    nis = '$nis',
-    jurusan = '$jurusan',
-    semester = '$semester'
-    where id = $id
-     ";
+        nama = '$nama',
+        nis = '$nis',
+        jurusan = '$jurusan',
+        semester = '$semester',
+        gambar = '$gambar'
+        WHERE id = $id
+    ";
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi);
 }
+
 function cari($keyword){
     $query = "SELECT * FROM siswa WHERE nama LIKE '%$keyword%' OR nis LIKE '%$keyword%' OR jurusan LIKE '%$keyword%'";
     return query($query);
