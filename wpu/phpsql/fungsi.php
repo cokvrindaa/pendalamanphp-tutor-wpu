@@ -43,6 +43,7 @@ function upload(){
     $ekstensiGambardibolehkan = ['jpg', 'jpeg', 'png'];
     $ekstensiGambar = explode('.', $namafile);
     $ekstensiGambar = strtolower(end($ekstensiGambar));
+    // Menemukan mengecek jika ekstensi gambar (file dri pengguna) itu TIDAK SAMA DENGAN ekstensi gambar di bolehkan berdasarkan array coy
     if(!in_array($ekstensiGambar, $ekstensiGambardibolehkan)){
         echo "
         <script>
@@ -71,10 +72,21 @@ function upload(){
 
 function hapus($id){
     global $koneksi;
-    $query = "DELETE FROM siswa WHERE id = '$id'";
-    mysqli_query($koneksi, $query);
+
+    // cari nama gambar di database
+    $gambar = query("SELECT gambar FROM siswa WHERE id = $id")[0]['gambar'];
+
+    // hapus file kalau ada
+    if ($gambar && file_exists("img/$gambar")) {
+        unlink("img/$gambar");
+    }
+
+    // hapus data di database
+    mysqli_query($koneksi, "DELETE FROM siswa WHERE id = $id");
+
     return mysqli_affected_rows($koneksi);
 }
+
 function ubah($data){
     global $koneksi;
     $id = $data["id"];
