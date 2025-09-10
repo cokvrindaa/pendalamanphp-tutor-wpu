@@ -54,6 +54,9 @@ $eksekusi = mysqli_query($koneksi, $sqlsintaks);
                         Release
                     </th>
                     <th scope="col" class="px-6 py-3">
+                        Gambar
+                    </th>
+                    <th scope="col" class="px-6 py-3">
                         Action
                     </th>
                 </tr>
@@ -77,15 +80,20 @@ $eksekusi = mysqli_query($koneksi, $sqlsintaks);
                     <td class="px-6 py-4">
                         <?php echo $datastok['harga']; ?>
                     </td>
+
                     <td class="px-6 py-4">
                         <?php echo $datastok['rilis']; ?>
                     </td>
-                    <td class="px-6 py-4">
+                    <td>
+                        <img src="../img/<?php echo $datastok["gambar"];?>" alt="" class="h-15">
+                    </td>
+                    <td class=" px-6 py-4">
                         <a href="../backend/hapus.php?id=<?php echo $datastok['id']; ?>"
                             class="text-red-500 hover:underline">Hapus</a> |
                         <a href="../frontend/updatePage.php?id=<?php echo $datastok['id']; ?>"
                             class="text-blue-500 hover:underline">Edit</a>
                     </td>
+
                 </tr>
                 <?php } ?>
             </tbody>
