@@ -12,9 +12,20 @@ var_dump($_FILES);
 $namaGambar = $_FILES['gambar']['name'];
 $tmpGambar = $_FILES['gambar']['tmp_name'];
 $error = $_FILES['gambar']['error'];
+$size = $_FILES['gambar']['size'];
 
 // Pengecekan files jika tidak ada file
 if($error === 4){
+    echo "
+    <script>
+        alert('Upload dulu gambarnya');
+        window.location.href = '../frontend/tambahPage.php';
+    </script>
+    ";
+    return false;
+}
+// Pengecekan jika file lebih dari 4 mb
+if($size > 4194304){
     echo "
     <script>
         alert('Upload dulu gambarnya');
@@ -37,11 +48,14 @@ if (!in_array($ekstensiGambar, $ekstensiDibolehkan)){
     ";
     return false;
 }
+    $namafileBaru = uniqid();
+    $namafileBaru .= '.';
+    $namafileBaru .= $ekstensiGambar;
 
-move_uploaded_file($tmpGambar, "../img/" . $namaGambar);
+move_uploaded_file($tmpGambar, "../img/" . $namafileBaru);
 
 // Menjalankan sql
-$sqlquery = "INSERT INTO stok VALUES(NULL, '$nama_produk', '$warna', '$kategori', '$harga', '$rilis', '$namaGambar')";
+$sqlquery = "INSERT INTO stok VALUES(NULL, '$nama_produk', '$warna', '$kategori', '$harga', '$rilis', '$namafileBaru')";
 $eksekusi = mysqli_query($koneksi, $sqlquery);
 
 // Pengecekan 

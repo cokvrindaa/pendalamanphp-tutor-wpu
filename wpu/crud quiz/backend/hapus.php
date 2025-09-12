@@ -3,6 +3,7 @@ require_once '../koneksi.php';
 $id = $_GET['id'];
 $sqlsintaks = "DELETE FROM stok WHERE id = '$id'";
 $eksekusi = mysqli_query($koneksi, $sqlsintaks);
+$sqlgambar = "SELECT gambar FROM stok WHERE id = '$id'";
 
 // Pengecekan eror
 if (mysqli_affected_rows($koneksi) > 0) {
