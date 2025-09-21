@@ -120,4 +120,41 @@ function cari($keyword){
     $query = "SELECT * FROM siswa WHERE nama LIKE '%$keyword%' OR nis LIKE '%$keyword%' OR jurusan LIKE '%$keyword%'";
     return query($query);
 }
+function registrasi ($data){
+    global $koneksi;
+    $nama = strtolower(stripslashes($data["nama"]));
+    $password = $data["password"];
+    $password2 = $data["password2"];
+
+    // cek apakah ada user yang sama namanya?
+    $hasil = mysqli_query($koneksi, "SELECT nama FROM user WHERE nama = '$nama'");
+    if (mysqli_fetch_assoc($hasil)){
+        echo "
+        <script>
+        alert('Username sudah pernah di pakai!');
+        </script>
+        ";
+        return false;
+    }
+    
+    // cek konfirmasi password.
+    if($password !== $password2){
+        echo "
+        <script>
+        alert('Password konfirmasi tidak sama dengan password!');
+        </script>
+        ";
+        return false;
+    }
+
+    // mengenkripsi password
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    
+    // menambahkan data
+    $sqlsintaks = "INSERT INTO user VALUES (NULL, '$nama', '$password')";
+    mysqli_query($koneksi, $sqlsintaks);
+
+    
+    return mysqli_affected_rows($koneksi);
+}
 ?>
