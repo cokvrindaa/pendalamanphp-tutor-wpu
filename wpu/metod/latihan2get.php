@@ -16,7 +16,7 @@ if (!isset($_GET["nama"]) || !isset($_GET["nis"]) || !isset($_GET["jurusan"]) ||
 
 <body>
     <ul>
-
+        tes
         <img style="width: 80px;" src="<?php echo $_GET["gambar"]; ?>">
         </img>
         <li>
