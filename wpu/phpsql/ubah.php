@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if( !isset($_SESSION["login"])){
+    header("Location: login.php");
+    exit;
+}
 require_once 'koneksi.php';
 require_once 'fungsi.php';
 $id = $_GET['id'];

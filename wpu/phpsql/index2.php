@@ -1,4 +1,9 @@
 <?php 
+session_start();
+if( !isset($_SESSION["login"])){
+    header("Location: login.php");
+    exit;
+}
 require_once 'koneksi.php';
 require_once 'fungsi.php';
 $siswadata = query("SELECT * FROM siswa ");
@@ -21,6 +26,7 @@ if( isset($_POST["cari"])){
 </head>
 
 <body>
+    <a href="logout.php">logout</a>
     <h1>Data Siswa</h1>
     <a href="tambah.php">tambah.php</a>
     <form action="" method="post">

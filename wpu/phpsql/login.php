@@ -1,4 +1,9 @@
 <?php
+session_start();
+if( isset($_SESSION["login"])){
+    header("Location: index2.php");
+    exit;
+}
 require_once 'koneksi.php';
 
     if (isset($_POST["submit"])){
@@ -10,8 +15,11 @@ require_once 'koneksi.php';
         if(mysqli_num_rows($hasil)=== 1){
             // cek pw
             $row = mysqli_fetch_assoc($hasil);
+            // Jika berhasil..
             if(password_verify($password, $row["password"])){
-                header("Location: index.php");
+                // set sesion
+                $_SESSION["login"] = true;
+                header("Location: index2.php");
                 exit;
             }
 
