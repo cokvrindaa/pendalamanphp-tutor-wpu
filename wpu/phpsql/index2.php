@@ -6,11 +6,25 @@ if( !isset($_SESSION["login"])){
 }
 require_once 'koneksi.php';
 require_once 'fungsi.php';
-$siswadata = query("SELECT * FROM siswa ");
+
+// Pagination
+$jumDataPerHal = 2;
+$totalData = count(query("SELECT * FROM siswa"));
+$jumlahHalaman = ceil($totalData / $jumDataPerHal);
+if (isset($_GET["halaman"])) {
+    $halAktif = $_GET["halaman"];
+}
+else {
+    $halAktif = 1;
+}
+$awalDataPerHal = ($jumDataPerHal * $halAktif ) - $jumDataPerHal;
+
+$siswadata = query("SELECT * FROM siswa LIMIT $awalDataPerHal, $jumDataPerHal");
 
 if( isset($_POST["cari"])){
     $siswadata = cari($_POST["keyword"]);
 }
+
 
 
 
@@ -33,6 +47,7 @@ if( isset($_POST["cari"])){
         <input type="text" name="keyword">
         <button type="submit" name="cari">Cari</button>
     </form>
+
     <table border=" 1" cellpadding="10" cellspacing="0">
         <tr>
             <th>No</th>
