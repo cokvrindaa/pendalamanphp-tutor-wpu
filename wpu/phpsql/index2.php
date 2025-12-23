@@ -26,8 +26,6 @@ if( isset($_POST["cari"])){
 }
 
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -47,10 +45,20 @@ if( isset($_POST["cari"])){
         <input type="text" name="keyword">
         <button type="submit" name="cari">Cari</button>
     </form>
-
+    <?php
+    for ($i = 1; $i < $jumlahHalaman; $i++){
+    ?>
+    <?php if ($i == $halAktif){ ?>
+    <a style="color: red;" href="index2.php?halaman=<?= $i ?>"><?=$i?></a>
+    <?php }else{ ?>
+    <?php  ?>
+    <a href="index2.php?halaman=<?= $i ?>"><?php echo $i;?></a>
+    <?php } ?>
+    <?php } ?>
     <table border=" 1" cellpadding="10" cellspacing="0">
         <tr>
             <th>No</th>
+
             <th>Aksi</th>
             <th>Nama</th>
             <th>Nis</th>
@@ -61,7 +69,8 @@ if( isset($_POST["cari"])){
         <?php foreach($siswadata as $siswatampil){ ?>
         <tr>
 
-            <td><?php echo $siswatampil["id"] ?></td>
+            <td><?php echo $siswatampil["id"] ?>
+            </td>
             <td>
                 <a href="ubah.php?id=<?php echo $siswatampil["id"]; ?>">Ubah</a> |
                 <a href="hapus.php?id=<?php echo $siswatampil["id"]?>">Hapus</a>
