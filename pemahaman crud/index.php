@@ -30,9 +30,8 @@
                 CRUD <cite title="Source Title">Create Read Update Delete</cite>
             </figcaption>
         </figure>
-        <a href="./tambahData.php">
+        <a href="./kelolaData.php">
             <button type="button" class="btn btn-outline-primary">Tambah Data</button>
-
         </a>
         <div class="table-responsive">
             <table class="table align-middle">
@@ -58,7 +57,9 @@
                         <td>Jl. Jalan Aja</td>
                         <td>
                             <button type="button" class="btn btn-outline-danger btn-sm">Hapus</button>
-                            <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
+                            <a href="kelolaData.php?ubah=1">
+                                <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
+                            </a>
                         </td>
                     </tr>
                 </tbody>
