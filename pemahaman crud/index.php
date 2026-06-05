@@ -1,8 +1,9 @@
 <?php
-    include "./koneksi.php";
-    $sqlSintaks = "SELECT * FROM siswa";
-    $sqlExeucte = mysqli_query($koneksi, $sqlSintaks);
-    $no = 1; 
+include "koneksi.php";
+$sqlSintaks = "SELECT * FROM siswa";
+$sqlExeucte = mysqli_query($koneksi, $sqlSintaks);
+$no = 1;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +58,7 @@
 
         <tbody>
           <tr>
-            <?php while ($hasil = mysqli_fetch_assoc($sqlExeucte)){
+            <?php while ($hasil = mysqli_fetch_assoc($sqlExeucte)) {
             ?>
             <td>
               <?php echo $no++ ?>
