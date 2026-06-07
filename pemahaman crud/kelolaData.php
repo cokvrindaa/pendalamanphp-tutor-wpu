@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,9 +35,9 @@
       <div class="mb-3 row">
         <label for="jenisKelamin" class="col-sm-2 col-form-label">Jenis Kelamin </label>
         <div class="col-sm-10">
-          <select class="form-select " id="jenisKelamin">
-            <option value="Laki-Laki" name="laki-laki">Laki-Laki</option>
-            <option value=" Perempuan" name="perempuan">Perempuan</option>
+          <select class="form-select " name="jenis_kelamin" id=" jenisKelamin">
+            <option value="Laki-Laki">Laki-Laki</option>
+            <option value="Perempuan">Perempuan</option>
           </select>
         </div>
       </div>
@@ -61,9 +60,9 @@
         <?php 
             if(isset($_GET["ubah"])){
             ?>
-        <button type="submit" name="edit" class="btn btn-outline-primary btn-sm">Simpan Perubahan!</button>
+        <button type="submit" name="aksi" value="edit" class="btn btn-outline-primary btn-sm">Simpan Perubahan!</button>
         <?php } else { ?>
-        <button type="submit" name="tambah" class="btn btn-outline-primary btn-sm">Tambahkan!</button>
+        <button type="submit" name="aksi" value="tambah" class="btn btn-outline-primary btn-sm">Tambahkan!</button>
         <?php }?>
         <a href="index.php">
           <button type="button" class="btn btn-outline-danger btn-sm">Kembali</button>

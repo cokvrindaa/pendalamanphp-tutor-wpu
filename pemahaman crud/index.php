@@ -1,8 +1,10 @@
 <?php
 include "koneksi.php";
-$sqlSintaks = "SELECT * FROM siswa";
-$sqlExeucte = mysqli_query($koneksi, $sqlSintaks);
+// Menampilkan seluruh data di database.
+$sqlQuery = "SELECT * FROM siswa";
+$sqlExeucte = mysqli_query($koneksi, $sqlQuery);
 $no = 1;
+
 
 ?>
 <!DOCTYPE html>
@@ -59,17 +61,22 @@ $no = 1;
         <tbody>
           <tr>
             <?php while ($hasil = mysqli_fetch_assoc($sqlExeucte)) {
+
             ?>
             <td>
               <?php echo $no++ ?>
             </td>
+            <!-- Mengambil data yang disimpan di hasil dari perintah fetch assoc yang tadi (menggunakan array asosisatif yang dimana ada key dan value. contoh key nya "nis" value nya 1) -->
             <td><?php echo $hasil["nis"] ?></td>
             <td><?php echo $hasil["nama_siswa"] ?></td>
             <td><?php echo $hasil["jenis_kelamin"] ?></td>
             <td><img src="./img/<?php echo $hasil["gambar"] ?>" alt="" style="height: 100px;"></td>
             <td><?php echo $hasil["alamat"] ?></td>
             <td>
-              <button type="button" class="btn btn-outline-danger btn-sm">Hapus</button>
+              <a href="proses.php?hapus=<?php echo $hasil['id_siswa']?>">
+                <button type="button" class="btn btn-outline-danger btn-sm"
+                  onClick="return confirm('apakah anda yakin')">Hapus</button>
+              </a>
               <a href="kelolaData.php?ubah=1">
                 <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
               </a>
