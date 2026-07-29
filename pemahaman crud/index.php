@@ -77,7 +77,7 @@ $no = 1;
                 <button type="button" class="btn btn-outline-danger btn-sm"
                   onClick="return confirm('apakah anda yakin')">Hapus</button>
               </a>
-              <a href="kelolaData.php?ubah=1">
+              <a href="kelolaData.php?ubah=<?php echo $hasil['id_siswa'] ?>">
                 <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
               </a>
             </td>
