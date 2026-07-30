@@ -11,7 +11,6 @@ class Produk {
     // Agar bisa menggambil properti gunakan this
     return "Judul : $this->judul , Penulis : $this->penulis, Penerbit : $this->penerbit, ";
   }
-    
 }
 
 // // object adalah instance/implementasi dari class
