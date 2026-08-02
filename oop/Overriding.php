@@ -4,17 +4,16 @@
 
 class Produk {
   // Property
-  public $judul , $penulis , $penerbit , $harga, $jumlahHalaman, $waktuMain ;
+  public $judul , $penulis , $penerbit , $harga ;
   
   // Construct
-  public function __construct($judul = 'judul', $penulis = 'penulis', $penerbit = 'penerbit', $harga = 0, $jumlahHalaman, $waktuMain) {
+  public function __construct($judul = 'judul', $penulis = 'penulis', $penerbit = 'penerbit', $harga = 0, ) {
     // This judul didapatkan dari properti sebelumnya sesuai hukum function
     $this->judul = $judul;
     $this->penulis = $penulis;
     $this->penerbit = $penerbit;
     $this->harga = $harga;
-    $this->jumlahHalaman = $jumlahHalaman;
-    $this->waktuMain = $waktuMain;
+
   }
 
   // Method
@@ -33,16 +32,34 @@ class Produk {
 
 // Child Komik dari Produk
 class Komik extends Produk {
+  public $jumlahHalaman;
+  
+  // Mengambil construct dari parrent, kecuali jumlah halaman nya
+  public function __construct($judul = 'judul', $penulis = 'penulis', $penerbit = 'penerbit', $harga = 0, $jumlahHalaman){
+
+    parent::__construct($judul, $penulis, $penerbit, $harga, $jumlahHalaman);
+    $this->jumlahHalaman = $jumlahHalaman;
+    
+  }
+
   public function getInfoProduk(){
-    $str = " {$this->judul} | {$this->getLabel()} (Rp. {$this->harga}) - {$this->jumlahHalaman} halaman";
+    $str = " Komik : ". parent::getInfoProduk() . " - {$this->jumlahHalaman} halaman";
     return $str;
   }
 }
 
 // Child Game dari Produk
 class Game extends Produk {
+  public $waktuMain;
+
+  // Mengambil construct dari parrent, kecuali waktumain nya
+  public function __construct($judul = 'judul', $penulis = 'penulis', $penerbit = 'penerbit', $harga = 0,  $waktuMain){
+    parent::__construct($judul, $penulis, $penerbit, $harga, $waktuMain);
+    $this->waktuMain = $waktuMain;
+  }
+
   public function getInfoProduk(){
-    $str = " {$this->judul} | {$this->getLabel()} (Rp. {$this->harga}) -  {$this->waktuMain} Jam.";
+    $str = " Game : ". parent::getInfoProduk() ."  {$this->waktuMain} Jam.";
     return $str;
   }
 }
@@ -58,8 +75,8 @@ class CetakInfo {
 }
 
 // // object adalah instance/implementasi dari class
-$produk2 = new Komik("Ujang the game", "Dujang", "PT. Dujang Nusantara", 1000, 100 , 0 );
-$produk3 = new Game( "Champion Of Ujangs", "Dujang", "PT. Sejahtera Dujang", 2000, 0, 50, );
+$produk2 = new Komik("Ujang the game", "Dujang", "PT. Dujang Nusantara", 1000, 100 );
+$produk3 = new Game( "Champion Of Ujangs", "Dujang", "PT. Sejahtera Dujang", 2000, 50 );
 
 // Komik : Champion Of Ujangs, Dujang , PT Sejahtera Dujang, Rp. 2000 - 100 Halaman
 // Game : Ujang The Game, Dujang , PT. Dujang Nusantra, Rp.1000 - 20 Jam
