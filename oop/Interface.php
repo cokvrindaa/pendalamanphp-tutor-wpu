@@ -2,11 +2,14 @@
 // Class
 // Menjual komik dan game
 
+interface InfoProduk {
+  public function getInfoProduk();
+}
+
 abstract class Produk {
-  // Property
-  private $judul , $penulis , $penerbit;
-  protected $diskon = 0 ;
-  private $harga ;
+  // Property  
+  protected $diskon = 0 , $judul , $penulis , $penerbit , $harga;
+
   
   // Construct
   public function __construct($judul = 'judul', $penulis = 'penulis', $penerbit = 'penerbit', $harga = 0, ) {
@@ -57,19 +60,19 @@ abstract class Produk {
     return "Judul : $this->judul , Penulis : $this->penulis, Penerbit : $this->penerbit ";
   }
 
-  abstract public function getInfoProduk();
+  abstract public function getInfo();
+
   
+}
+
+// Child Komik dari Produk
+class Komik extends Produk implements InfoProduk {
+  public $jumlahHalaman;
   public function getInfo(){
     // Komik : Champion Of Ujangs, Dujang , PT Sejahtera Dujang, Rp. 2000 - 100 Halaman
     $str = " {$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
     return $str;
   }
-  
-}
-
-// Child Komik dari Produk
-class Komik extends Produk {
-  public $jumlahHalaman;
   
   // Mengambil construct dari parrent, kecuali jumlah halaman nya
   public function __construct($judul = 'judul', $penulis = 'penulis', $penerbit = 'penerbit', $harga = 0, $jumlahHalaman){
@@ -83,11 +86,17 @@ class Komik extends Produk {
     $str = " Komik : ". $this->getInfo() . " - {$this->jumlahHalaman} halaman";
     return $str;
   }
+
 }
 
 // Child Game dari Produk
-class Game extends Produk {
+class Game extends Produk implements InfoProduk {
   public $waktuMain;
+  public function getInfo(){
+    // Komik : Champion Of Ujangs, Dujang , PT Sejahtera Dujang, Rp. 2000 - 100 Halaman
+    $str = " {$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
+    return $str;
+  }
 
   // Mengambil construct dari parrent, kecuali waktumain nya
   public function __construct($judul = 'judul', $penulis = 'penulis', $penerbit = 'penerbit', $harga = 0,  $waktuMain){
