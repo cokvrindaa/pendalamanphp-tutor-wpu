@@ -1,7 +1,7 @@
-<?php
+<?php 
 class Home {
-  public function index() {
+  // untuk method deafult
+  public function index(){
     echo 'home/index';
   }
 }
-?>
