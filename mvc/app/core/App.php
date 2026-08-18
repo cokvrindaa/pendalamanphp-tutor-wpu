@@ -10,7 +10,7 @@ class App {
 
     // membuat controller deafult
     // mengecek apakah ada file dengan index 0 / pertama di folder contollers
-    if (file_exists('../app/controllers/' . $url[0] . '.php')){
+    if ($url && file_exists('../app/controllers/' . $url[0] . '.php')){
       // menjadikan nilai dari properti controler dengan url index 0
       $this->controller = $url[0];
       // menghapus url index 0 , yakni home
