@@ -1,7 +1,7 @@
 <?php 
-class Home {
+class Home extends Controller{
   // untuk method deafult
   public function index(){
-    echo 'home/index';
+    $this->view('home/index');
   }
 }
