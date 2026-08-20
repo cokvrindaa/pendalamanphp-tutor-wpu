@@ -2,23 +2,16 @@
   <div class="row">
     <div class="col-6">
       <h3>Daftar Mahasiswa</h3>
+      <ul class="list-group">
+        <?php foreach($data['mahasiswa'] as $mahasiswa) : ?>
 
-      <?php foreach($data['mahasiswa'] as $mahasiswa) : ?>
-      <ul>
-        <li>
-          <?= $mahasiswa['nama']; ?>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <?php echo $mahasiswa['nama'] ?>
+          <a href="<?=  BASEURL; ?>/mahasiswa/detail/<?= $mahasiswa['id']; ?>" class="btn btn-primary btn-sm">detail</a>
         </li>
-        <li>
-          <?= $mahasiswa['nis']; ?>
-        </li>
-        <li>
-          <?= $mahasiswa['email']; ?>
-        </li>
-        <li>
-          <?= $mahasiswa['jurusan']; ?>
-        </li>
+        <?php endforeach;?>
+
       </ul>
-      <?php endforeach;?>
     </div>
   </div>
 </div>
