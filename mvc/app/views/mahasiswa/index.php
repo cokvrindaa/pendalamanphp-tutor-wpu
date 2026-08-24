@@ -8,7 +8,8 @@
   <div class="row">
     <div class="col-6">
       <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#formModal">
+      <button type="button" class="btn btn-primary mb-4 tombolTambahData" data-bs-toggle="modal"
+        data-bs-target="#formModal">
         Tambah data
       </button>
       <h3>Daftar Mahasiswa</h3>
@@ -20,7 +21,12 @@
             <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mahasiswa['id']; ?>" class="btn btn-primary btn-sm">
               Detail
             </a>
-            <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mahasiswa['id']; ?>" class="btn btn-danger btn-sm"
+            <a href="<?= BASEURL; ?>/mahasiswa/ubah/<?= $mahasiswa['id']; ?>"
+              class="btn btn-success btn-sm tampilModalUbah" data-bs-toggle="modal" data-bs-target="#formModal"
+              data-id="<?= $mahasiswa['id']; ?>">
+              Ubah
+            </a>
+            <a href=" <?= BASEURL; ?>/mahasiswa/hapus/<?= $mahasiswa['id']; ?>" class="btn btn-danger btn-sm"
               onclick="return confirm('Yakin mau hapus data ini?')">
               Hapus
             </a>
@@ -38,12 +44,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="judulModal">Tambah data mahasiswa</h1>
+        <h1 class="modal-title fs-5" id="formModalLabel">Tambah data mahasiswa</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
         <form action="<?php echo BASEURL; ?>/mahasiswa/tambah" method="post">
+          <input type="hidden" name="id" id="id">
           <div class="mb-3">
             <label for="nama" class="form-label">Nama: </label>
             <input type="text" class="form-control" id="nama" name="nama">
@@ -56,7 +63,7 @@
             <label for="email" class="form-label">Email: </label>
             <input type="email" class="form-control" id="email" name="email">
           </div>
-          <select class="form-select" name="jurusan" aria-label="Default select example">
+          <select class="form-select" id="jurusan" name="jurusan" aria-label="Default select example">
             <option value="Teknik Informatika">Teknik Informatika</option>
             <option value="Sistem Informasi">Sistem Informasi</option>
             <option value="Teknik Elektro">Teknik Elektro</option>
