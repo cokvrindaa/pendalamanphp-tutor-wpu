@@ -14,10 +14,17 @@
       <h3>Daftar Mahasiswa</h3>
       <ul class="list-group">
         <?php foreach($data['mahasiswa'] as $mahasiswa) : ?>
-
         <li class="list-group-item d-flex justify-content-between align-items-center">
-          <?php echo $mahasiswa['nama'] ?>
-          <a href="<?=  BASEURL; ?>/mahasiswa/detail/<?= $mahasiswa['id']; ?>" class="btn btn-primary btn-sm">detail</a>
+          <?= $mahasiswa['nama'] ?>
+          <div class="btn-group" role="group">
+            <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mahasiswa['id']; ?>" class="btn btn-primary btn-sm">
+              Detail
+            </a>
+            <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mahasiswa['id']; ?>" class="btn btn-danger btn-sm"
+              onclick="return confirm('Yakin mau hapus data ini?')">
+              Hapus
+            </a>
+          </div>
         </li>
         <?php endforeach;?>
 
